@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerion Tech | Mayank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #10b981;
+            --primary-blue: #38bdf8;
+            --primary-gold: #fbbf24; 
+            --bg-dark: #020617;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+
+     /* --- BACKGROUND --- */
+        .page-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(17, 24, 39, 0.8) 0%, var(--bg-dark) 100%),
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            z-index: -1;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            z-index: 100;
+        }
+        .nav-logo { font-weight: 800; letter-spacing: 2px; cursor: pointer; color: white; text-decoration: none; }
+        .nav-logo span { color: var(--primary-green); }
+
+        /* --- VIEW CONTROLLER --- */
+        .view { 
+            display: none; 
+            min-height: 100vh; 
+            width: 100%;
+            padding: 120px 20px 60px;
+            animation: fadeIn 0.4s ease-out; 
+        }
+        .view.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- HOME SECTION --- */
+        .home-stack { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 900px; }
+        .hero-logo {
+            width: 280px; 
+            margin-bottom: 40px; 
+            filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.4));
+        }
+        h1 { font-size: clamp(34px, 7vw, 70px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .highlight { background: linear-gradient(90deg, var(--primary-green), var(--primary-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .btn { padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 14px; border: none; text-decoration: none; color: white; }
+        
+        .btn-gold { background: var(--primary-gold); color: #000; box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4); }
+        .btn-blue { background: var(--primary-blue); box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3); }
+        .btn-green { background: var(--primary-green); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); background: transparent; }
+        
+        .btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
+
+        /* --- SERVICES SECTION (GOLDEN GLOW) --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; max-width: 1000px; }
+        .service-card { 
+            background: rgba(30, 41, 59, 0.4); 
+            padding: 40px; 
+            border-radius: 25px; 
+            border: 1px solid rgba(251, 191, 36, 0.2); 
+            text-align: center;
+            transition: 0.4s;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.05);
+        }
+        .service-card:hover { 
+            border-color: var(--primary-gold); 
+            transform: translateY(-10px); 
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+            background: rgba(251, 191, 36, 0.05);
+        }
+        .service-card h3 { color: var(--primary-gold); margin-bottom: 15px; font-size: 22px; }
+
+        /* --- PROJECTS SECTION --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; }
+        .project-card { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; }
+        .project-card img { width: 100%; height: 260px; object-fit: cover; display: block; transition: 0.5s; }
+
+        /* --- ABOUT SECTION --- */
+        .founder-box { display: flex; align-items: center; gap: 50px; max-width: 950px; padding: 50px; background: rgba(30, 41, 59, 0.3); border-radius: 35px; border: 1px solid var(--primary-green); backdrop-filter: blur(15px); }
+        .founder-img { width: 250px; border-radius: 20px; border: 2px solid var(--primary-green); box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); }
+        .founder-text { text-align: left; }
+
+        @media (max-width: 768px) {
+            .founder-box { flex-direction: column; text-align: center; }
+            .founder-text { text-align: center; }
+        }
+
+        .watermark { position: fixed; bottom: 20px; right: 20px; color: rgba(255,255,255,0.2); font-size: 11px; text-align: right; }
+    </style>
+</head>
+<body>
+
+    <div class="page-bg"></div>
+
+    <nav>
+        <div class="nav-logo" onclick="showView('home')">ZERION<span>TECH</span></div>
+        <button class="btn btn-outline" style="padding: 8px 20px; font-size: 12px;" onclick="showView('about')">FOUNDER INFO</button>
+    </nav>
+
+    <section id="home" class="view active">
+        <div class="home-stack">
+            <img src="logo.png" alt="Logo" class="hero-logo">
+            <h1>Accelerate Your <br> <span class="highlight">Digital Evolution</span></h1>
+            <p style="color: var(--text-muted); font-size: 18px; max-width: 600px;">Engineering the future through elegant code and intelligent automation.</p>
+            <div class="btn-group">
+                <button class="btn btn-gold" onclick="showView('services')">Services</button>
+                <button class="btn btn-blue" onclick="showView('projects')">Our Projects</button>
+                <a href="#" class="btn btn-outline">Contact Now</a>
+                <button class="btn btn-green" onclick="showView('about')">About Founder</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="view">
+        <h2 style="margin-bottom: 40px; font-size: 32px; color: var(--primary-gold);">ELITE <span style="color:white">SERVICES</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Robotic Engineering</h3>
+                <p style="color: var(--text-muted);">Crafting autonomous systems and intelligent hardware integrations for the next generation of tech.</p>
+            </div>
+            <div class="service-card">
+                <h3>High-Speed Web</h3>
+                <p style="color: var(--text-muted);">Building scalable, ultra-fast web architectures with premium UI/UX design and clean code logic.</p>
+            </div>
+            <div class="service-card">
+                <h3>Full-Stack Automation</h3>
+                <p style="color: var(--text-muted);">Merging software and hardware to create seamless automated workflows and smart IoT environments.</p>
+            </div>
+        </div>
+        <button class="btn btn-outline" style="margin-top: 50px;" onclick="showView('home')">BACK TO HOME</button>
+    </section>
+
+    <section id="projects" class="view">
+        <h2 style="margin-bottom: 40px; font-size: 32px;">SELECTED <span class="highlight">WORK</span></h2>
+        <div class="project-grid">
+            <div class="project-card"><img src="project1.png" alt="Project 1"></div>
+            <div class="project-card"><img src="project2.png" alt="Project 2"></div>
+        </div>
+        <button class="btn btn-outline" style="margin-top: 40px;" onclick="showView('home')">BACK TO HOME</button>
+    </section>
+
+    <section id="about" class="view">
+        <div class="founder-box">
+            <img src="founder.png" alt="Mayank" class="founder-img">
+            <div class="founder-text">
+                <h2 class="highlight" style="font-size: 40px; margin-bottom: 10px;">MAYANK</h2>
+                <h4 style="color: var(--primary-green); letter-spacing: 4px; font-size: 12px; margin-bottom: 20px;">FOUNDER & VISIONARY</h4>
+                <p style="line-height: 1.8; color: var(--text-muted); font-size: 17px;">
+                    Hi, I'm Mayank. I am a 13-year-old developer and robotics enthusiast building high-speed websites and automated systems. Zerion Tech is where I turn complex logic into reality.
+                </p>
+                <button class="btn btn-green" style="margin-top: 30px;" onclick="showView('home')">BACK TO HOME</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="watermark">
+        Activate Windows <br>
+        <span style="opacity: 0.6;">Go to Settings to activate Windows.</span>
+    </div>
+
+    <script>
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+    </script>
+</body>
+</html>
