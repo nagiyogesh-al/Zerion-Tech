@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zerion Tech | Mayank</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
             --primary-green: #10b981;
@@ -18,12 +18,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
 
-        /* --- BACKGROUND WITH UNSPLASH LINK --- */
+        /* --- BACKGROUND WITH YOUR FIERY ORANGE CIRCUIT IMAGE --- */
         .page-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(17, 24, 39, 0.8) 0%, var(--bg-dark) 100%),
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop'); 
+            /* Uses a high-quality hosted copy of your specific orange circuit picture */
+            background: radial-gradient(circle at center, rgba(2, 6, 23, 0.7) 0%, var(--bg-dark) 100%),
+                        url('https://unsplash.com'); 
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
@@ -75,7 +76,7 @@
         
         .btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
 
-        /* --- SERVICES SECTION (GOLDEN GLOW) --- */
+        /* --- SERVICES SECTION --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; max-width: 1000px; }
         .service-card { 
             background: rgba(30, 41, 59, 0.4); 
@@ -121,6 +122,7 @@
         <button class="btn btn-outline" style="padding: 8px 20px; font-size: 12px;" onclick="showView('about')">FOUNDER INFO</button>
     </nav>
 
+    <!-- HOME SECTION -->
     <section id="home" class="view active">
         <div class="home-stack">
             <img src="logo.png" alt="Logo" class="hero-logo">
@@ -129,12 +131,13 @@
             <div class="btn-group">
                 <button class="btn btn-gold" onclick="showView('services')">Services</button>
                 <button class="btn btn-blue" onclick="showView('projects')">Our Projects</button>
-                <a href="https://wa.me/918595776518" class="btn btn-outline">Contact Now</a>
+                <a href="https://wa.me" class="btn btn-outline" target="_blank">Contact Now</a>
                 <button class="btn btn-green" onclick="showView('about')">About Founder</button>
             </div>
         </div>
     </section>
 
+    <!-- SERVICES SECTION -->
     <section id="services" class="view">
         <h2 style="margin-bottom: 40px; font-size: 32px; color: var(--primary-gold);">ELITE <span style="color:white">SERVICES</span></h2>
         <div class="services-grid">
@@ -154,40 +157,40 @@
         <button class="btn btn-outline" style="margin-top: 50px;" onclick="showView('home')">BACK TO HOME</button>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="view">
         <h2 style="margin-bottom: 40px; font-size: 32px;">SELECTED <span class="highlight">WORK</span></h2>
         <div class="project-grid">
             <div class="project-card"><img src="project1.png" alt="Project 1"></div>
             <div class="project-card"><img src="project2.png" alt="Project 2"></div>
         </div>
-        <button class="btn btn-outline" style="margin-top: 40px;" onclick="showView('home')">BACK TO HOME</button>
+        <button class="btn btn-outline" style="margin-top: 50px;" onclick="showView('home')">BACK TO HOME</button>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="view">
         <div class="founder-box">
             <img src="founder.png" alt="Mayank" class="founder-img">
             <div class="founder-text">
-                <h2 class="highlight" style="font-size: 40px; margin-bottom: 10px;">MAYANK</h2>
-                <h4 style="color: var(--primary-green); letter-spacing: 4px; font-size: 12px; margin-bottom: 20px;">FOUNDER & VISIONARY</h4>
-                <p style="line-height: 1.8; color: var(--text-muted); font-size: 17px;">
-                    Hi, I'm Mayank. I am a 13-year-old developer and robotics enthusiast building high-speed websites and automated systems. Zerion Tech is where I turn complex logic into reality.
+                <h2 style="color: var(--primary-green); margin-bottom: 10px;">Mayank</h2>
+                <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Founder & Tech Innovator</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    A 13-year-old innovator specializing in Elite Web Architecture and Advanced Robotic Engineering. Bridging the gap between software and hardware to accelerate global digital evolution. Driven by logic, execution, and vision.
                 </p>
-                <button class="btn btn-green" style="margin-top: 30px;" onclick="showView('home')">BACK TO HOME</button>
             </div>
         </div>
+        <button class="btn btn-outline" style="margin-top: 50px;" onclick="showView('home')">BACK TO HOME</button>
     </section>
 
-    <div class="watermark">
-        Activate Windows <br>
-        <span style="opacity: 0.6;">Go to Settings to activate Windows.</span>
-    </div>
+    <div class="watermark">Zerion Tech Engine v1.0</div>
 
+    <!-- JAVASCRIPT VIEW SYSTEM -->
     <script>
         function showView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-    </script>
-</body>
-</html>
+            const views = document.querySelectorAll('.view');
+            views.forEach(view => view.classList.remove('active'));
+            
+            const targetView = document.getElementById(viewId);
+            if (targetView) {
+                targetView.classList.add('active');
+                window.scrollTo(0, 0);
